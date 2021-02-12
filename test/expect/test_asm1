@@ -1,0 +1,36 @@
+pc = ff000000
+instruction = 123450b7
+x1 = xxxxxxxx
+x2 = xxxxxxxx
+**************
+pc = ff000004
+instruction = 67808093
+x1 = 12345000
+x2 = xxxxxxxx
+**************
+pc = ff000008
+instruction = 98765137
+x1 = 12345678
+x2 = xxxxxxxx
+**************
+pc = ff00000c
+instruction = 43210113
+x1 = 12345678
+x2 = 98765000
+**************
+pc = ff000010
+instruction = 11111037
+x1 = 12345678
+x2 = 98765432
+**************
+pc = ff000014
+instruction = 11100013
+x1 = 12345678
+x2 = 98765432
+**************
+pc = ff000018
+instruction = 00000000
+x1 = 12345678
+x2 = 98765432
+**************
+test/test1_bench.v:29: $finish called at 601 (1s)

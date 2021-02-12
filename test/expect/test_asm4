@@ -1,0 +1,31 @@
+pc = ff000000
+instruction = 00001537
+ra = xxxxxxxx
+a0 = xxxxxxxx
+**************
+pc = ff000004
+instruction = 008000ef
+ra = xxxxxxxx
+a0 = 00001000
+**************
+pc = ff00000c
+instruction = 00150513
+ra = ff000008
+a0 = 00001000
+**************
+pc = ff000010
+instruction = 00008067
+ra = ff000008
+a0 = 00001001
+**************
+pc = ff000008
+instruction = 0000006f
+ra = ff000008
+a0 = 00001001
+**************
+pc = ff000008
+instruction = 0000006f
+ra = ff000008
+a0 = 00001001
+**************
+test/test4_bench.v:28: $finish called at 501 (1s)

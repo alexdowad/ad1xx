@@ -1,0 +1,64 @@
+instruction = 123440b7
+x1 = xxxxxxxx
+x2 = xxxxxxxx
+x3 = xxxxxxxx
+x4 = xxxxxxxx
+x5 = xxxxxxxx
+**************
+instruction = 32108093
+x1 = 12344000
+x2 = xxxxxxxx
+x3 = xxxxxxxx
+x4 = xxxxxxxx
+x5 = xxxxxxxx
+**************
+instruction = 00008113
+x1 = 12344321
+x2 = xxxxxxxx
+x3 = xxxxxxxx
+x4 = xxxxxxxx
+x5 = xxxxxxxx
+**************
+instruction = 00010193
+x1 = 12344321
+x2 = 12344321
+x3 = xxxxxxxx
+x4 = xxxxxxxx
+x5 = xxxxxxxx
+**************
+instruction = 00018213
+x1 = 12344321
+x2 = 12344321
+x3 = 12344321
+x4 = xxxxxxxx
+x5 = xxxxxxxx
+**************
+instruction = 12341037
+x1 = 12344321
+x2 = 12344321
+x3 = 12344321
+x4 = 12344321
+x5 = xxxxxxxx
+**************
+instruction = 23400013
+x1 = 12344321
+x2 = 12344321
+x3 = 12344321
+x4 = 12344321
+x5 = xxxxxxxx
+**************
+instruction = 00000293
+x1 = 12344321
+x2 = 12344321
+x3 = 12344321
+x4 = 12344321
+x5 = xxxxxxxx
+**************
+instruction = 00000000
+x1 = 12344321
+x2 = 12344321
+x3 = 12344321
+x4 = 12344321
+x5 = 00000000
+**************
+test/test2_bench.v:90: $finish called at 801 (1s)

@@ -1,0 +1,17 @@
+pc = ff000000
+instruction = 00100637
+x12 = xxxxxxxx
+**************
+pc = ff000004
+instruction = 00c0006f
+x12 = 00100000
+**************
+pc = ff000010
+instruction = 23460613
+x12 = 00100000
+**************
+pc = ff000014
+instruction = 00000000
+x12 = 00100234
+**************
+test/test3_bench.v:23: $finish called at 301 (1s)

@@ -1,0 +1,57 @@
+pc = ff000000
+instruction = 00200093
+x10 = xxxxxxxx
+**************
+pc = ff000004
+instruction = fff00113
+x10 = xxxxxxxx
+**************
+pc = ff000008
+instruction = 04100063
+x10 = xxxxxxxx
+**************
+pc = ff00000c
+instruction = 00101463
+x10 = xxxxxxxx
+**************
+pc = ff000014
+instruction = 0200ca63
+x10 = xxxxxxxx
+**************
+pc = ff000018
+instruction = 00114463
+x10 = xxxxxxxx
+**************
+pc = ff000020
+instruction = 02105463
+x10 = xxxxxxxx
+**************
+pc = ff000024
+instruction = 0020d463
+x10 = xxxxxxxx
+**************
+pc = ff00002c
+instruction = 0020e463
+x10 = xxxxxxxx
+**************
+pc = ff000034
+instruction = 00117463
+x10 = xxxxxxxx
+**************
+pc = ff00003c
+instruction = 11112537
+x10 = xxxxxxxx
+**************
+pc = ff000040
+instruction = 22250513
+x10 = 11112000
+**************
+pc = ff000044
+instruction = 0080006f
+x10 = 11112222
+**************
+pc = ff00004c
+instruction = 0000006f
+x10 = 11112222
+**************
+test/test6_bench.v:33: $finish called at 1301 (1s)
