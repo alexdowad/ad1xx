@@ -1,0 +1,142 @@
+pc = ff000000
+instruction = 70002137
+x1 (ra) = xxxxxxxx
+x2 (sp) = xxxxxxxx
+**************
+pc = ff000004
+instruction = fff10113
+x1 (ra) = xxxxxxxx
+x2 (sp) = 70002000
+**************
+pc = ff000008
+instruction = 00000097
+x1 (ra) = xxxxxxxx
+x2 (sp) = 70001fff
+**************
+pc = ff00000c
+instruction = 00c080e7
+x1 (ra) = ff000008
+x2 (sp) = 70001fff
+**************
+pc = ff000014
+instruction = fe010113
+x1 (ra) = ff000010
+x2 (sp) = 70001fff
+**************
+pc = ff000018
+instruction = 00812e23
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff00001c
+instruction = 02010413
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000020
+instruction = 06400793
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000024
+instruction = fef42623
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000028
+instruction = 03200793
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff00002c
+instruction = fef42423
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000030
+instruction = 01400793
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000034
+instruction = fef42223
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000038
+instruction = 700007b7
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff00003c
+instruction = fef42023
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000040
+instruction = fec42703
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000044
+instruction = fe842783
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000048
+instruction = 00f70733
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff00004c
+instruction = fe442783
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000050
+instruction = 00f70733
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000054
+instruction = fe042783
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000058
+instruction = 00e7a023
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff00005c
+instruction = 00000793
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000060
+instruction = 00078513
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000064
+instruction = 01c12403
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff000068
+instruction = 02010113
+x1 (ra) = ff000010
+x2 (sp) = 70001fdf
+**************
+pc = ff00006c
+instruction = 00008067
+x1 (ra) = ff000010
+x2 (sp) = 70001fff
+**************
+pc = ff000010
+instruction = 0000006f
+x1 (ra) = ff000010
+x2 (sp) = 70001fff
+**************
+RAM = 000000aa
+test/test_c8_bench.v:53: $finish called at 2701 (1s)

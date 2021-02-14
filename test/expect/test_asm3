@@ -14,4 +14,4 @@ pc = ff000014
 instruction = 00000000
 x12 = 00100234
 **************
-test/test3_bench.v:23: $finish called at 301 (1s)
+test/test_asm3_bench.v:23: $finish called at 301 (1s)

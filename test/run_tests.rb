@@ -36,4 +36,12 @@ class AsmTest < Minitest::Test
   def test_arithmetic_and_logic_ops
     vvp_test('test_asm7')
   end
+
+  def test_trivial_c_program
+    vvp_test('test_c8')
+  end
+
+  def test_loops_and_recursive_function_calls
+    vvp_test('test_c9')
+  end
 end

@@ -33,4 +33,4 @@ instruction = 00000000
 x1 = 12345678
 x2 = 98765432
 **************
-test/test1_bench.v:29: $finish called at 601 (1s)
+test/test_asm1_bench.v:29: $finish called at 601 (1s)

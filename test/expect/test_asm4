@@ -28,4 +28,4 @@ instruction = 0000006f
 ra = ff000008
 a0 = 00001001
 **************
-test/test4_bench.v:28: $finish called at 501 (1s)
+test/test_asm4_bench.v:28: $finish called at 501 (1s)

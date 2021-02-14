@@ -422,4 +422,4 @@ x13 = 00004455
 x14 = 00008833
 x15 = 00004455
 **************
-test/test5_bench.v:64: $finish called at 2101 (1s)
+test/test_asm5_bench.v:64: $finish called at 2101 (1s)

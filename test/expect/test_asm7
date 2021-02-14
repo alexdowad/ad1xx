@@ -297,4 +297,4 @@ x12 = 81234567
 x13 = 0000002c
 x14 = ffffff81
 **************
-test/test7_bench.v:87: $finish called at 4701 (1s)
+test/test_asm7_bench.v:87: $finish called at 4701 (1s)

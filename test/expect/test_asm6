@@ -54,4 +54,4 @@ pc = ff00004c
 instruction = 0000006f
 x10 = 11112222
 **************
-test/test6_bench.v:33: $finish called at 1301 (1s)
+test/test_asm6_bench.v:33: $finish called at 1301 (1s)

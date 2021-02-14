@@ -61,4 +61,4 @@ x3 = 12344321
 x4 = 12344321
 x5 = 00000000
 **************
-test/test2_bench.v:90: $finish called at 801 (1s)
+test/test_asm2_bench.v:90: $finish called at 801 (1s)
