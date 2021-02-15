@@ -9,13 +9,18 @@ x1 (ra) = xxxxxxxx
 x2 (sp) = 70002000
 **************
 pc = ff000008
-instruction = 00000097
+instruction = 068000ef
 x1 (ra) = xxxxxxxx
 x2 (sp) = 70001fff
 **************
+pc = ff000070
+instruction = 00008067
+x1 (ra) = ff00000c
+x2 (sp) = 70001fff
+**************
 pc = ff00000c
-instruction = 00c080e7
-x1 (ra) = ff000008
+instruction = 008000ef
+x1 (ra) = ff00000c
 x2 (sp) = 70001fff
 **************
 pc = ff000014
@@ -139,4 +144,4 @@ x1 (ra) = ff000010
 x2 (sp) = 70001fff
 **************
 RAM = 000000aa
-test/test_c8_bench.v:53: $finish called at 2701 (1s)
+test/test_c8_bench.v:54: $finish called at 2801 (1s)

@@ -47,6 +47,7 @@ module test8_bench;
     #100 show();
     #100 show();
     #100 show();
+    #100 show();
 
     $display("RAM = %h", ad100.ram[0]);
 

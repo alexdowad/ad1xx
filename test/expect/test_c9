@@ -1,7 +1,8 @@
 instruction = 70002137
 instruction = fff10113
-instruction = 00000097
-instruction = 0d8080e7
+instruction = 1a8000ef
+instruction = 00008067
+instruction = 0d4000ef
 instruction = fe010113
 instruction = 00112e23
 instruction = 00812c23
@@ -1623,4 +1624,4 @@ RAM[8] =         40
 RAM[9] =         30
 RAM[10] =         20
 RAM[11] =         10
-test/test_c9_bench.v:35: $finish called at 161201 (1s)
+test/test_c9_bench.v:35: $finish called at 161301 (1s)

@@ -44,4 +44,8 @@ class AsmTest < Minitest::Test
   def test_loops_and_recursive_function_calls
     vvp_test('test_c9')
   end
+
+  def test_global_and_static_variables
+    vvp_test('test_c10')
+  end
 end
