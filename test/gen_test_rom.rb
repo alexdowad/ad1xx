@@ -2,7 +2,7 @@
 # Usage: ruby gen_test_rom.rb input.bin >output.v
 
 def hexword(s)
-  n = (s[0].ord << 24) + (s[1].ord << 16) + (s[2].ord << 8) + s[3].ord
+  n = (s[3].ord << 24) + (s[2].ord << 16) + (s[1].ord << 8) + s[0].ord
   n.to_s(16).rjust(8, '0')
 end
 

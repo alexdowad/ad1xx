@@ -1,6 +1,6 @@
 // Basic single-issue, in-order, RISC-V CPU
 // Only supports the basic, 32-bit RISC-V ISA (RV32I) without any of the standard ISA extensions
-// Big-endian
+// Little-endian
 
 // Ref: https://riscv.org/technical/specifications/
 // Also see ./ad100.txt for architectural details not determined by RISC-V specification
@@ -45,10 +45,7 @@ wire [31:0] alu_result;
 // when we don't need it
 assign addr_2 = alu_result[31:2];
 
-// RISC-V instructions are always in little-endian byte order, even on a big-endian machine
-// As a notational convenience, swap those bytes around to big-endian order
-// (It will make the below code easier to compare with diagrams in the ISA spec)
-wire [31:0] instruction = {read_1[7:0], read_1[15:8], read_1[23:16], read_1[31:24]};
+wire [31:0] instruction = read_1;
 
 // Picking various fields out of current instruction
 wire [4:0] opcode1 = instruction[6:2];
@@ -121,15 +118,15 @@ always @*
       // since we only read/write memory in 32-bit units, must mask out specific
       // range of bits and insert the bits we want to write in their place
       case (alu_result[1:0])
-        2'b00: write_2 = {reg2[7:0], read_2[23:0]};
-        2'b01: write_2 = {read_2[31:24], reg2[7:0], read_2[15:0]};
-        2'b10: write_2 = {read_2[31:16], reg2[7:0], read_2[7:0]};
-        2'b11: write_2 = {read_2[31:8], reg2[7:0]};
+        2'b00: write_2 = {read_2[31:8], reg2[7:0]};
+        2'b01: write_2 = {read_2[31:16], reg2[7:0], read_2[7:0]};
+        2'b10: write_2 = {read_2[31:24], reg2[7:0], read_2[15:0]};
+        2'b11: write_2 = {reg2[7:0], read_2[23:0]};
       endcase
     3'b001: // store halfword
       case (alu_result[1])
-        1'b0: write_2 = {reg2[15:0], read_2[15:0]};
-        1'b1: write_2 = {read_2[31:16], reg2[15:0]};
+        1'b0: write_2 = {read_2[31:16], reg2[15:0]};
+        1'b1: write_2 = {reg2[15:0], read_2[15:0]};
       endcase
     3'b010: // store word
       write_2 = reg2;
@@ -159,27 +156,27 @@ always @*
       case (opcode2)
         `LB:
           case (alu_result[1:0])
-            2'b00: write_reg_val = {{24{read_2[31]}}, read_2[31:24]};
-            2'b01: write_reg_val = {{24{read_2[23]}}, read_2[23:16]};
-            2'b10: write_reg_val = {{24{read_2[15]}}, read_2[15:8]};
-            2'b11: write_reg_val = {{24{read_2[7]}},  read_2[7:0]};
+            2'b00: write_reg_val = {{24{read_2[7]}},  read_2[7:0]};
+            2'b01: write_reg_val = {{24{read_2[15]}}, read_2[15:8]};
+            2'b10: write_reg_val = {{24{read_2[23]}}, read_2[23:16]};
+            2'b11: write_reg_val = {{24{read_2[31]}}, read_2[31:24]};
           endcase
         `LH:
           case (alu_result[1])
-            1'b0: write_reg_val = {{16{read_2[31]}}, read_2[31:16]};
-            1'b1: write_reg_val = {{16{read_2[15]}}, read_2[15:0]};
+            1'b0: write_reg_val = {{16{read_2[15]}}, read_2[15:0]};
+            1'b1: write_reg_val = {{16{read_2[31]}}, read_2[31:16]};
           endcase
         `LBU:
           case (alu_result[1:0])
-            2'b00: write_reg_val = {24'b0, read_2[31:24]};
-            2'b01: write_reg_val = {24'b0, read_2[23:16]};
-            2'b10: write_reg_val = {24'b0, read_2[15:8]};
-            2'b11: write_reg_val = {24'b0, read_2[7:0]};
+            2'b00: write_reg_val = {24'b0, read_2[7:0]};
+            2'b01: write_reg_val = {24'b0, read_2[15:8]};
+            2'b10: write_reg_val = {24'b0, read_2[23:16]};
+            2'b11: write_reg_val = {24'b0, read_2[31:24]};
           endcase
         `LHU:
           case (alu_result[1])
-            1'b0: write_reg_val = {16'b0, read_2[31:16]};
-            1'b1: write_reg_val = {16'b0, read_2[15:0]};
+            1'b0: write_reg_val = {16'b0, read_2[15:0]};
+            1'b1: write_reg_val = {16'b0, read_2[31:16]};
           endcase
         `LW:     write_reg_val = read_2; // load entire word
         default: write_reg_val = 0;
