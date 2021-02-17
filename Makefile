@@ -2,7 +2,8 @@ ad100_src = ad100.v ad100_cpu.v alu.v program_counter.v register_file.v
 asm_tests = test/test_asm1.vvp test/test_asm2.vvp test/test_asm3.vvp \
             test/test_asm4.vvp test/test_asm5.vvp test/test_asm6.vvp \
             test/test_asm7.vvp
-c_tests   = test/test_c8.vvp test/test_c9.vvp test/test_c10.vvp
+c_tests   = test/test_c8.vvp test/test_c9.vvp test/test_c10.vvp \
+            test/test_c11.vvp
 
 test/test%.vvp: $(ad100_src) test/test%_rom.v test/test%_bench.v
 	iverilog -o $@ $^

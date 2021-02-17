@@ -48,4 +48,8 @@ class AsmTest < Minitest::Test
   def test_global_and_static_variables
     vvp_test('test_c10')
   end
+
+  def test_function_pointers
+    vvp_test('test_c11')
+  end
 end
