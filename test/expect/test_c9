@@ -1613,15 +1613,15 @@ instruction = 00008067
 instruction = 0000006f
 instruction = 0000006f
 factorial(10) =    3628800
-RAM[1] =        110
-RAM[2] =        100
-RAM[3] =         90
-RAM[4] =         80
-RAM[5] =         70
-RAM[6] =         60
-RAM[7] =         50
-RAM[8] =         40
-RAM[9] =         30
-RAM[10] =         20
-RAM[11] =         10
-test/test_c9_bench.v:35: $finish called at 161301 (1s)
+RAM[          1] =        110
+RAM[          2] =        100
+RAM[          3] =         90
+RAM[          4] =         80
+RAM[          5] =         70
+RAM[          6] =         60
+RAM[          7] =         50
+RAM[          8] =         40
+RAM[          9] =         30
+RAM[         10] =         20
+RAM[         11] =         10
+test/test_c9_bench.v:30: $finish called at 161301 (1s)

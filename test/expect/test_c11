@@ -53,5 +53,5 @@ instruction = 02010113
 instruction = 00008067
 instruction = 0000006f
 instruction = 0000006f
-RAM[0] =        223
+RAM[0] = 223
 test/test_c11_bench.v:23: $finish called at 5401 (1s)

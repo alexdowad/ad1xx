@@ -7,7 +7,7 @@ module test5_bench;
     begin
       $display("pc = %h", {ad100.addr_1, 2'b00});
       $display("instruction = %h", inst);
-      $display("RAM = %h", ad100.ram[0]);
+      $display("RAM = %h", {ad100.ram[3], ad100.ram[2], ad100.ram[1], ad100.ram[0]});
       $display("x1  = %h", ad100.cpu.regfile.registers[1]);
       $display("x2  = %h", ad100.cpu.regfile.registers[2]);
       $display("x3  = %h", ad100.cpu.regfile.registers[3]);

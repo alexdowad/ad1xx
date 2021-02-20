@@ -32,7 +32,10 @@ module ad100_cpu
   output     [29:0] addr_2, // used for reading/writing data
   input      [31:0] read_2,
   output reg [31:0] write_2,
-  output reg        write_enable_2
+  // which of the 4 bytes in `write_2` do we want to update in RAM?
+  // `write_enable_1` is for the least significant byte in the word,
+  // `write_enable_4` is for the most signficant
+  output reg        write_enable_1, write_enable_2, write_enable_3, write_enable_4
 );
 
 // Memory read port 1 is always used to read the instruction we should execute
@@ -110,29 +113,35 @@ always @*
   endcase
 
 // what should be written to memory, if anything?
-always @*
-  write_enable_2 = (opcode1 == 5'b01000); // store?
-always @*
-  case (opcode2)
-    3'b000: // store byte
-      // since we only read/write memory in 32-bit units, must mask out specific
-      // range of bits and insert the bits we want to write in their place
-      case (alu_result[1:0])
-        2'b00: write_2 = {read_2[31:8], reg2[7:0]};
-        2'b01: write_2 = {read_2[31:16], reg2[7:0], read_2[7:0]};
-        2'b10: write_2 = {read_2[31:24], reg2[7:0], read_2[15:0]};
-        2'b11: write_2 = {reg2[7:0], read_2[23:0]};
-      endcase
-    3'b001: // store halfword
-      case (alu_result[1])
-        1'b0: write_2 = {read_2[31:16], reg2[15:0]};
-        1'b1: write_2 = {reg2[15:0], read_2[15:0]};
-      endcase
-    3'b010: // store word
-      write_2 = reg2;
-    default:
-      write_2 = 0;
-  endcase
+always @* begin
+  write_enable_1 = 0;
+  write_enable_2 = 0;
+  write_enable_3 = 0;
+  write_enable_4 = 0;
+  write_2 = reg2;
+
+  if (opcode1 == 5'b01000) // store?
+    case (opcode2)
+      3'b000: // store byte
+        case (alu_result[1:0])
+          2'b00: write_enable_1 = 1;
+          2'b01: write_enable_2 = 1;
+          2'b10: write_enable_3 = 1;
+          2'b11: write_enable_4 = 1;
+        endcase
+      3'b001: // store halfword
+        case (alu_result[1])
+          1'b0: begin write_enable_1 = 1; write_enable_2 = 1; end
+          1'b1: begin write_enable_3 = 1; write_enable_4 = 1; end
+        endcase
+      3'b010: begin // store word
+        write_enable_1 = 1;
+        write_enable_2 = 1;
+        write_enable_3 = 1;
+        write_enable_4 = 1;
+      end
+    endcase
+end
 
 // should we store results to destination register?
 reg [4:0] write_reg;

@@ -19,7 +19,7 @@ module test10_bench;
       #100 show();
     end
 
-    $display("RAM[0] = %d", ad100.ram[0]);
+    $display("RAM[0] = %d", {ad100.ram[3], ad100.ram[2], ad100.ram[1], ad100.ram[0]});
     $finish();
   end
 
