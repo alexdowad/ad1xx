@@ -1,2 +1,3 @@
 test/*.vvp
 test/test*_rom.v
+font_rom.v

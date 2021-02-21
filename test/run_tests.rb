@@ -52,4 +52,9 @@ class AsmTest < Minitest::Test
   def test_function_pointers
     vvp_test('test_c11')
   end
+
+  def test_vga_controller
+    `vvp #{__dir__}/test_vga1.vvp | #{__dir__}/check_vga_test.rb`
+    assert_equal 0, $?.exitstatus
+  end
 end

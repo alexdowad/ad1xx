@@ -4,6 +4,7 @@ asm_tests = test/test_asm1.vvp test/test_asm2.vvp test/test_asm3.vvp \
             test/test_asm7.vvp
 c_tests   = test/test_c8.vvp test/test_c9.vvp test/test_c10.vvp \
             test/test_c11.vvp
+vga_tests = test/test_vga1.vvp
 
 test/test%.vvp: $(ad100_src) test/test%_rom.v test/test%_bench.v
 	iverilog -o $@ $^
@@ -25,6 +26,12 @@ test/test_c%_rom.v: test/test%.c c_startup.asm
 	riscv-objcopy --dump-section .text=$(TMP)/test.bin $(TMP)/test.o
 	test/gen_test_rom.rb $(TMP)/test.bin >$@
 
-test: $(asm_tests) $(c_tests) FORCE
+font_rom.v: gen_font_rom.rb font_rom.v.erb
+	./gen_font_rom.rb
+
+test/test_vga1.vvp: vga_controller.v video_memory.v font_rom.v test/test_vga1_bench.v
+	iverilog -o $@ $^
+
+test: $(asm_tests) $(c_tests) $(vga_tests) FORCE
 	test/run_tests.rb
 FORCE:
