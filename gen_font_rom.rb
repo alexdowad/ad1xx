@@ -38,32 +38,56 @@ class Parabola
   end
 
   def winding_number(x, y)
-    result, second = 0, false # this parabola might cross the line of interest twice
+    return 0 if @x1 == @x2 && @x2 == @x3 # straight vertical line
 
-    t_for_x(x) do |t|
-      # If we test for `t` ∈ [0,1], then if `x` happens to land exactly on the
-      # point where one segment joins another, then _both_ segments will be
-      # counted as crossing `x`. To avoid that, test for `t` ∈ (0,1].
-      # (Limited floating-point precision can still cause this problem though...)
-      next if t <= 0 || t > 1 # intersection point isn't on the parabola
+    # This parabola might cross `x` once, twice, or not at all
+    # Solve quadratic equation to find values of parameter `t` where parabola
+    # intersects a vertical line passing through `x`....
+    t1, t2 = t_for_x(x)
+    return 0 if !t1
 
-      # It doesn't count if we cross under the point of interest
-      next if y_for_t(t) <= y
+    # The value(s) we have found of `t` may or may not fall in the interval
+    # (0,1]. By solving that equation, we were really extending the parabola
+    # to infinite length. The intersections we found may not fall between the
+    # starting and ending points of this segment.
 
-      # the first intersection point counts as 1 if x₁ was to the left of x,
-      # or -1 otherwise; the second intersection point is the other way around
-      # (because if the parabola intersects the line of interest twice, it will
-      # be travelling in the opposite direction at the second intersection)
-      result += ((@x1 < x) ^ second) ? 1 : -1
-      second = true
-    end rescue nil
+    # Testing if `t` ∈ (0,1] is straightforward, but we used floating-point
+    # arithmetic to solve the equation, including some lossy operations.
+    # If the intersection is very close to the end of this segment, we might
+    # wrongly have a value of `t` which is a touch too small or too big to count.
 
-    result
+    # Use some heuristics to reduce such problems:
+    if @x1 < x && @x3 >= x
+      # There must be exactly one intersection
+      t = (t2 && (t1 - 0.5).abs > (t2 - 0.5).abs) ? t2 : t1
+      return 1 if y_for_t(t) > y # It doesn't count if we cross under (x, y)
+    elsif @x1 > x && @x3 <= x
+      # Likewise
+      t = (t2 && (t1 - 0.5).abs > (t2 - 0.5).abs) ? t2 : t1
+      return -1 if y_for_t(t) > y
+    elsif t2 && ((t1 > 0 && t1 <= 1) || (t2 > 0 && t2 <= 1))
+      # We must have two relevant values of `t`
+      # But this parabola might have passed under rather than over (x, y) at
+      # one or both of those intersections
+      # It must have passed left-to-right at one intersection and right-to-left
+      # at the other; we need to know which is which
+      result = 0
+      if @x1 < x
+        result += 1 if y_for_t(t1) > y
+        result -= 1 if y_for_t(t2) > y
+      else
+        result -= 1 if y_for_t(t1) > y
+        result += 1 if y_for_t(t2) > y
+      end
+      return result
+    end
+
+    0
   end
 
-  def t_for_x(x, &block)
+  def t_for_x(x)
     # solve the above x(t) equation to get a quadratic equation in `t`
-    quadratic_real_roots(@x1 - 2*@x2 + @x3, 2*(@x2 - @x1), @x1 - x, &block)
+    quadratic_real_roots(@x1 - 2*@x2 + @x3, 2*(@x2 - @x1), @x1 - x)
   end
 
   def x_for_t(t)
@@ -76,15 +100,16 @@ class Parabola
     (@y1 * ((1 - t) ** 2)) + (2 * @y2 * t * (1 - t)) + (@y3 * (t ** 2))
   end
 
-  # yield roots of ax² + bx + c = 0
+  # find roots of ax² + bx + c = 0
+  # may return a single number or an array of 2 numbers; if it is an array,
+  # the lower number will be first
   def quadratic_real_roots(a, b, c)
     if a != 1
       if a == 0
         if b != 0
-          yield -c.to_f / b
-          return
+          return -c.to_f / b
         else
-          raise "0x + c = 0 has either infinitely many or no solutions"
+          raise "0x + #{c} = 0 has either infinitely many or no solutions"
         end
       else
         b = b.to_f / a
@@ -95,10 +120,9 @@ class Parabola
     d = b*b - 4*c # if d is negative, equation has no real roots
     if d > 0
       d = Math.sqrt(d)
-      yield (d - b) / 2
-      yield (-d - b) / 2
+      return [(-d - b) / 2, (d - b) / 2]
     elsif d == 0
-      yield -b.to_f / 2 # only one real root
+      return -b.to_f / 2 # only one real root
     end
   end
 end
